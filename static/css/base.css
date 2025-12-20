@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f5f7fb;
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+input, textarea {
+    font-family: inherit;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+h1, h2, h3, h4 {
+    font-weight: 600;
+}
+
+button, a, input {
+    transition: 0.3s ease;
+}

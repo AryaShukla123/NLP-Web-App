@@ -1,0 +1,97 @@
+body {
+    height: 100vh;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Container */
+.register-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* Glass Card */
+.register-card {
+    width: 420px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    border-radius: 15px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    color: white;
+}
+
+/* Headings */
+.register-card h2 {
+    text-align: center;
+    font-weight: 600;
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 20px;
+    opacity: 0.85;
+}
+
+/* Two-column row */
+.row {
+    display: flex;
+    gap: 12px;
+}
+
+/* Inputs */
+.input-group {
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.input-group label {
+    font-size: 13px;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    font-size: 14px;
+}
+
+/* Button */
+button {
+    width: 100%;
+    padding: 12px;
+    background: #ffffff;
+    color: #764ba2;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+button:hover {
+    background: #f1f1f1;
+    transform: translateY(-2px);
+}
+
+/* Login link */
+.login-text {
+    text-align: center;
+    margin-top: 18px;
+    font-size: 14px;
+}
+
+.login-text a {
+    color: #ffd6ff;
+    font-weight: 500;
+}
+
+.login-text a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NLP APP | Registration Page</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{url_for('static',filename='css/base.css')}}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/register.css') }}">
+</head>
+<body>
+    <div class="register-container">
+    <div class="register-card">
+
+        <h2>Create Account ✨</h2>
+        <p class="subtitle">Join us and explore NLP magic</p>
+
+        <form>
+            <div class="row">
+                <div class="input-group">
+                    <label>First Name</label>
+                    <input type="text" placeholder="Enter first name" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Last Name</label>
+                    <input type="text" placeholder="Enter last name" required>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Email</label>
+                <input type="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" placeholder="Create password" required>
+            </div>
+
+            <div class="input-group">
+                <label>Confirm Password</label>
+                <input type="password" placeholder="Confirm password" required>
+            </div>
+
+            <button type="submit">Register</button>
+        </form>
+
+        <p class="login-text">
+            Already a member?
+            <a href="login.html">Login here</a>
+        </p>
+
+    </div>
+</div>
+
+</body>
+</html>

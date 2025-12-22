@@ -18,15 +18,19 @@
         <h2>Welcome Back 👋</h2>
         <p class="subtitle">Please login to continue</p>
 
-        <form>
+        {% if message %}
+           <p style="color:#008000" class="subtitle">{{ message }}</p>
+        {% endif %}
+
+        <form action="/perform_login", method="post">
             <div class="input-group">
                 <label>Email</label>
-                <input type="email" placeholder="Enter your email" required>
+                <input type="email" placeholder="Enter your email" required name="user_email">
             </div>
 
             <div class="input-group">
                 <label>Password</label>
-                <input type="password" placeholder="Enter your password" required>
+                <input type="password" placeholder="Enter your password" required name="user_password">
             </div>
 
             <button type="submit">Login</button>
@@ -34,7 +38,7 @@
 
         <p class="register-text">
             Not a member?
-            <a href="register.html">Register here</a>
+            <a href="/register">Register here</a>
         </p>
 
     </div>

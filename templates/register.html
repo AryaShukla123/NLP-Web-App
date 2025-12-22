@@ -17,22 +17,26 @@
         <h2>Create Account ✨</h2>
         <p class="subtitle">Join us and explore NLP magic</p>
 
-        <form>
+        {% if message %}
+           <p style="color:#780606" class="subtitle">{{ message }}</p>
+        {% endif %}
+
+        <form action="/perform_registration" method="post">
             <div class="row">
                 <div class="input-group">
                     <label>First Name</label>
-                    <input type="text" placeholder="Enter first name" required>
+                    <input type="text" placeholder="Enter first name" required name="user_fname">
                 </div>
 
                 <div class="input-group">
                     <label>Last Name</label>
-                    <input type="text" placeholder="Enter last name" required>
+                    <input type="text" placeholder="Enter last name" required name="user_lname">
                 </div>
             </div>
 
             <div class="input-group">
                 <label>Email</label>
-                <input type="email" placeholder="Enter your email" required>
+                <input type="email" placeholder="Enter your email" required name="user_email">
             </div>
 
             <div class="input-group">
@@ -42,7 +46,7 @@
 
             <div class="input-group">
                 <label>Confirm Password</label>
-                <input type="password" placeholder="Confirm password" required>
+                <input type="password" placeholder="Confirm password" required name="user_password">
             </div>
 
             <button type="submit">Register</button>
@@ -50,7 +54,7 @@
 
         <p class="login-text">
             Already a member?
-            <a href="login.html">Login here</a>
+            <a href="/">Login here</a>
         </p>
 
     </div>

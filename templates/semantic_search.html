@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NLP APP | Semantic Search</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/semantic_search.css') }}">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        NLP App <span class="welcome">| Semantic Search</span>
+    </div>
+
+    <div class="logout">
+        <a href="/logout">Logout</a>
+    </div>
+</header>
+
+
+<section class="search-container">
+
+    <div class="search-card">
+
+        <h2><i class="fas fa-magnifying-glass-chart"></i> Semantic Search</h2>
+        <p class="subtitle">
+            Search documents based on meaning, not just keywords.
+        </p>
+
+        <form>
+            <label for="query">Search Query</label>
+            <input type="text" id="query" placeholder="Enter your search query...">
+
+            <button type="submit">
+                <i class="fas fa-search"></i> Search
+            </button>
+        </form>
+
+
+        <div class="results">
+
+            <h4>Search Results</h4>
+
+            <div class="result-card">
+                <p class="result-text">
+                    This is a sample result showing semantically relevant content.
+                </p>
+                <span class="score">Relevance: 0.92</span>
+            </div>
+
+            <div class="result-card">
+                <p class="result-text">
+                    Another meaningful result retrieved using embeddings.
+                </p>
+                <span class="score">Relevance: 0.87</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer class="footer">
+    © 2025 NLP App | Built with Flask & ❤️
+</footer>
+
+</body>
+</html>

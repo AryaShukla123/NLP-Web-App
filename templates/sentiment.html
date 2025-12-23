@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NLP APP | Sentiment Analysis</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sentiment.css') }}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        NLP App <span class="welcome">| Sentiment Analysis</span>
+    </div>
+
+    <div class="logout">
+        <a href="/logout">Logout</a>
+    </div>
+</header>
+
+
+<section class="sentiment-container">
+
+    <div class="sentiment-card">
+
+        <h2><i class="fas fa-smile"></i> Sentiment Analysis</h2>
+        <p class="subtitle">
+            Analyze text sentiment as <b>Positive</b>, <b>Neutral</b>, or <b>Negative</b>.
+        </p>
+
+        <form>
+            <label for="text">Enter Text</label>
+            <textarea id="text" placeholder="Type or paste your text here..."></textarea>
+
+            <button type="submit">
+                <i class="fas fa-chart-line"></i> Analyze Sentiment
+            </button>
+        </form>
+
+
+        <div class="result-box">
+            <h4>Sentiment Result</h4>
+            <p class="placeholder">Result will appear here...</p>
+        </div>
+
+    </div>
+
+</section>
+
+<footer class="footer">
+    © 2025 NLP App | Built with Flask & ❤️
+</footer>
+
+</body>
+</html>

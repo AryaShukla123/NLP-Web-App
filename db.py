@@ -21,7 +21,7 @@ class Database:
             users = json.load(rf)
 
             if email in users:
-                if email[2] == password:
+                if users[email][2] == password:
                     return 1
                 else:
                     return 0

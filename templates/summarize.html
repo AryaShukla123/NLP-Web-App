@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NLP APP | Summarization</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/summarize.css') }}">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        NLP App <span class="welcome">| Text Summarization</span>
+    </div>
+
+    <div class="logout">
+        <a href="/logout">Logout</a>
+    </div>
+</header>
+
+
+<section class="summarize-container">
+
+    <div class="summarize-card">
+
+        <h2><i class="fas fa-file-lines"></i> Text Summarization</h2>
+        <p class="subtitle">
+            Generate a concise summary while retaining key information.
+        </p>
+
+        <form>
+            <label for="longText">Input Text</label>
+            <textarea id="longText" placeholder="Paste long article or paragraph here..."></textarea>
+
+            <button type="submit">
+                <i class="fas fa-compress"></i> Summarize
+            </button>
+        </form>
+
+
+        <div class="summary-result">
+            <h4>Summary</h4>
+            <p class="placeholder">Summary will appear here...</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer class="footer">
+    © 2025 NLP App | Built with Flask & ❤️
+</footer>
+
+</body>
+</html>

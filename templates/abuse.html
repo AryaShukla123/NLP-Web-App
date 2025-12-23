@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NLP APP | Abuse Detection</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/abuse.css') }}">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        NLP App <span class="welcome">| Abuse Detection</span>
+    </div>
+
+    <div class="logout">
+        <a href="/logout">Logout</a>
+    </div>
+</header>
+
+
+<section class="abuse-container">
+
+    <div class="abuse-card">
+
+        <h2><i class="fas fa-shield-alt"></i> Abuse Detection</h2>
+        <p class="subtitle">
+            Detect abusive, offensive or harmful language in user-generated text.
+        </p>
+
+        <form>
+            <label for="text">Enter Text</label>
+            <textarea id="text" placeholder="Enter text to check for abuse..."></textarea>
+
+            <button type="submit">
+                <i class="fas fa-exclamation-triangle"></i> Detect Abuse
+            </button>
+        </form>
+
+        <!-- Result -->
+        <div class="result-box">
+            <h4>Detection Result</h4>
+            <p class="placeholder">Result will appear here...</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer class="footer">
+    © 2025 NLP App | Built with Flask & ❤️
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NLP APP | Emotion Detection</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/emotion.css') }}">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        NLP App <span class="welcome">| Emotion Detection</span>
+    </div>
+
+    <div class="logout">
+        <a href="/logout">Logout</a>
+    </div>
+</header>
+
+
+<section class="emotion-container">
+
+    <div class="emotion-card">
+
+        <h2><i class="fas fa-face-smile"></i> Emotion Detection</h2>
+        <p class="subtitle">
+            Analyze text and identify the underlying emotion.
+        </p>
+
+        <form>
+
+            <label for="emotion-text">Enter Text</label>
+            <textarea id="emotion-text" placeholder="Type something to detect emotion..."></textarea>
+
+            <button type="submit">
+                <i class="fas fa-heart-pulse"></i> Detect Emotion
+            </button>
+
+        </form>
+
+        <!-- Result -->
+        <div class="emotion-result">
+            <h4>Detected Emotion</h4>
+            <p class="placeholder">Emotion will appear here</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer class="footer">
+    © 2025 NLP App | Built with Flask & ❤️
+</footer>
+
+</body>
+</html>

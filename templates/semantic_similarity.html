@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NLP APP | Semantic Similarity</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/semantic_similarity.css') }}">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        NLP App <span class="welcome">| Semantic Similarity</span>
+    </div>
+
+    <div class="logout">
+        <a href="/logout">Logout</a>
+    </div>
+</header>
+
+
+<section class="similarity-container">
+
+    <div class="similarity-card">
+
+        <h2><i class="fas fa-code-compare"></i> Semantic Similarity</h2>
+        <p class="subtitle">
+            Measure how similar two texts are based on their meaning.
+        </p>
+
+        <form>
+
+
+            <label for="text1">Text A</label>
+            <textarea id="text1" placeholder="Enter first sentence or paragraph..."></textarea>
+
+
+            <label for="text2">Text B</label>
+            <textarea id="text2" placeholder="Enter second sentence or paragraph..."></textarea>
+
+            <button type="submit">
+                <i class="fas fa-equals"></i> Compare Similarity
+            </button>
+
+        </form>
+
+
+        <div class="similarity-result">
+            <h4>Similarity Score</h4>
+            <p class="placeholder">Score will appear here (0 – 1)</p>
+        </div>
+
+    </div>
+
+</section>
+
+<footer class="footer">
+    © 2025 NLP App | Built with Flask & ❤️
+</footer>
+
+</body>
+</html>

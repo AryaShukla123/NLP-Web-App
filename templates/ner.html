@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NLP APP | Named Entity Recognition</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/ner.css') }}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <header>
+    <div class="logo">
+       🧠 NLP App <span class="welcome">| Named Entity Recognition</span>
+    </div>
+
+    <div class="logout">
+        <a href="/logout">Logout</a>
+    </div>
+</header>
+
+
+<section class="ner-container">
+
+    <div class="ner-card">
+
+        <h2><i class="fas fa-tags"></i> Named Entity Recognition</h2>
+        <p class="subtitle">
+            Extract entities like <b>Person</b>, <b>Organization</b>, <b>Location</b>, <b>Date</b> from text.
+        </p>
+
+        <form action="/perform_ner" method="post">
+            <label for="text">Enter Text</label>
+            <textarea name="ner_text" id="text" placeholder="Enter your text here..."></textarea>
+
+            <button type="submit">
+                <i class="fas fa-magic"></i> Analyze Text
+            </button>
+        </form>
+
+
+        <div class="output-box">
+            <h4>Extracted Entities</h4>
+            <p class="placeholder">Results will appear here...</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer class="footer">
+    © 2025 NLP App | Built with Flask & ❤️
+</footer>
+
+</body>
+</html>

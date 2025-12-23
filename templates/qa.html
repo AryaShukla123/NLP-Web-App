@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NLP APP | Question Answering</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/qa.css') }}">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        NLP App <span class="welcome">| Question Answering</span>
+    </div>
+
+    <div class="logout">
+        <a href="/logout">Logout</a>
+    </div>
+</header>
+
+
+<section class="qa-container">
+
+    <div class="qa-card">
+
+        <h2><i class="fas fa-circle-question"></i> Question Answering</h2>
+        <p class="subtitle">
+            Ask questions and get accurate answers from the given context.
+        </p>
+
+        <form>
+
+            <!-- Context -->
+            <label for="context">Context</label>
+            <textarea id="context" placeholder="Enter paragraph or document here..."></textarea>
+
+            <!-- Question -->
+            <label for="question">Question</label>
+            <input type="text" id="question" placeholder="Ask your question here...">
+
+            <button type="submit">
+                <i class="fas fa-bolt"></i> Get Answer
+            </button>
+
+        </form>
+
+        <!-- Answer -->
+        <div class="answer-box">
+            <h4>Answer</h4>
+            <p class="placeholder">Answer will appear here...</p>
+        </div>
+
+    </div>
+
+</section>
+
+>
+<footer class="footer">
+    © 2025 NLP App | Built with Flask & ❤️
+</footer>
+
+
+</body>
+</html>

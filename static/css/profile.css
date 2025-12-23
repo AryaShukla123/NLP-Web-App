@@ -1,0 +1,195 @@
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #eef2ff, #f8fafc);
+}
+
+/*HEADER */
+header {
+    position: sticky;
+    top: 0;
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: linear-gradient(135deg, #1e1b4b, #312e81);
+    color: white;
+
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+    z-index: 100;
+}
+
+
+.logo {
+    font-size: 22px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+
+.welcome {
+    font-size: 14px;
+    color: #c7d2fe;
+}
+
+
+.logout a {
+    color: white;
+    font-size: 15px;
+    padding: 8px 18px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #ff416c, #ff4b2b);
+    box-shadow: 0 8px 20px rgba(255, 75, 43, 0.4);
+}
+
+.logout a:hover {
+    background: linear-gradient(135deg, #ff4b2b, #ff416c);
+    transform: scale(1.05);
+}
+
+
+/*  DASHBOARD*/
+.dashboard {
+    padding: 40px;
+}
+
+.dashboard h1 {
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    font-size: 15px;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+/* CARDS GRID  */
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+    padding: 40px;
+}
+
+/*  CARD */
+.card {
+    background: white;
+    border-radius: 18px;
+    padding: 35px 22px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    transition: all 0.4s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    animation: fadeUp 0.6s ease forwards;
+
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(79, 70, 229, 0.15),
+        transparent
+    );
+    transition: all 0.6s ease;
+}
+
+
+/* Hover effect */
+.card:hover::before {
+    left: 100%;
+}
+
+.card:hover {
+    transform: translateY(-12px) scale(1.03);
+    box-shadow: 0 25px 50px rgba(79, 70, 229, 0.25);
+}
+
+.card i {
+    font-size: 42px;
+    color: #4f46e5;
+    margin-bottom: 18px;
+    transition: transform 0.4s ease, color 0.4s ease;
+}
+
+.card:hover i {
+    transform: rotate(6deg) scale(1.15);
+    color: #6366f1;
+}
+
+.card h3 {
+    font-size: 21px;
+    color: #1f2937;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 14.5px;
+    color: #6b7280;
+    line-height: 1.6;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 12px;
+    color: white;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.hot {
+    background: linear-gradient(135deg, #ff416c, #ff4b2b);
+}
+
+.new {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+}
+
+.footer {
+    margin-top: 60px;
+    padding: 26px 20px;
+    text-align: center;
+
+    background: linear-gradient(135deg, #1e1b4b, #312e81);
+    color: #c7d2fe;
+
+    font-size: 13px;
+    letter-spacing: 0.4px;
+}
+
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+
+
+
+

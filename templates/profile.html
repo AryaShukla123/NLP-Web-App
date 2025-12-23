@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NLP APP | Profile page </title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+<body>
+
+    <header class="header">
+    <div class="logo">
+        🧠 NLP App <span class="welcome">| Welcome User 👋</span>
+    </div>
+
+    <div class="logout">
+        <a href="#">Logout</a>
+    </div>
+</header>
+
+
+<main class="dashboard">
+
+    <h1>Welcome to NLP Dashboard</h1>
+    <p class="subtitle">Choose a task to get started</p>
+
+
+    <div class="cards-container">
+
+        <a href="/sentiment" class="card-link">
+        <div class="card">
+
+            <i class="fas fa-smile"></i>
+        <h3>Sentiment Analysis</h3>
+        <p>Detect positive, negative or neutral emotions</p></div>
+        </a>
+
+
+        <a href="/abuse" class="card-link">
+        <div class="card">
+            <span class="badge new">NEW</span>
+
+            <i class="fas fa-ban"></i>
+        <h3>Abuse Detection</h3>
+        <p>Identify offensive or abusive language</p></div>
+        </a>
+
+        <a href="/ner" class="card-link">
+        <div class="card"><i class="fas fa-tags"></i>
+        <h3>Named Entity Recognition</h3>
+        <p>Extract names, locations & organizations</p></div>
+        </a>
+
+        <a href="/paraphrase" class="card-link">
+        <div class="card"><i class="fas fa-random"></i>
+        <h3>Paraphrasing</h3>
+        <p>Rewrite text without changing meaning</p></div>
+        </a>
+
+        <a href="/translate" class="card-link">
+        <div class="card">
+            <span class="badge hot">HOT</span>
+
+            <i class="fas fa-language"></i>
+        <h3>Translation</h3>
+        <p>Convert text between languages</p></div>
+        </a>
+
+        <a href="/language" class="card-link">
+        <div class="card">
+            <span class="badge hot">HOT</span>
+
+            <i class="fas fa-globe"></i>
+        <h3>Language Detection</h3>
+        <p>Detect the language of input text</p></div>
+        </a>
+
+        <a href="/summarize" class="card-link">
+        <div class="card"><i class="fas fa-file-alt"></i>
+        <h3>Summarization</h3>
+        <p>Generate short & meaningful summaries</p></div>
+        </a>
+
+        <a href="/qa" class="card-link">
+        <div class="card">
+            <span class="badge new">NEW</span>
+            <i class="fas fa-question-circle"></i>
+        <h3>Question Answering</h3>
+        <p>Get answers from given context</p></div>
+        </a>
+
+        <a href="/semantic_search" class="card-link">
+        <div class="card"><i class="fas fa-search"></i>
+        <h3>Semantic Search</h3>
+        <p>Search based on meaning, not keywords</p></div>
+        </a>
+
+        <a href="/semantic_similarity" class="card-link">
+        <div class="card">
+            <span class="badge new">NEW</span>
+
+            <i class="fas fa-link"></i>
+    <h3>Semantic Similarity</h3>
+    <p>Compare text meaning and measure similarity</p></div>
+        </a>
+
+        <a href="/emotion" class="card-link">
+        <div class="card"><i class="fas fa-heart"></i>
+        <h3>Emotion Detection</h3>
+        <p>Detect emotions like joy, anger, sadness</p></div>
+        </a>
+
+    </div>
+
+</main>
+
+<footer class="footer">
+    © 2025 NLP App | Built with Flask & ❤️
+</footer>
+
+
+
+</body>
+</html>

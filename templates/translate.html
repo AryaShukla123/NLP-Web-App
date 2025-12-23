@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NLP APP | Translation</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/translate.css') }}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        NLP App <span class="welcome">| Translation</span>
+    </div>
+
+    <div class="logout">
+        <a href="/logout">Logout</a>
+    </div>
+</header>
+
+
+<section class="translation-container">
+
+    <div class="translation-card">
+
+        <h2><i class="fas fa-language"></i> Language Translation</h2>
+        <p class="subtitle">
+            Translate text between multiple languages with high accuracy.
+        </p>
+
+
+        <div class="language-row">
+            <div>
+                <label>From</label>
+                <select>
+                    <option>English</option>
+                    <option>Hindi</option>
+                    <option>French</option>
+                    <option>Spanish</option>
+                </select>
+            </div>
+
+            <div class="swap">
+                <i class="fas fa-right-left"></i>
+            </div>
+
+            <div>
+                <label>To</label>
+                <select>
+                    <option>Hindi</option>
+                    <option>English</option>
+                    <option>French</option>
+                    <option>Spanish</option>
+                </select>
+            </div>
+        </div>
+
+
+        <label>Input Text</label>
+        <textarea placeholder="Enter text to translate..."></textarea>
+
+        <button>
+            <i class="fas fa-globe"></i> Translate
+        </button>
+
+        <label class="output-label">Translated Text</label>
+        <textarea placeholder="Translated text will appear here..." disabled></textarea>
+
+    </div>
+
+</section>
+
+<footer class="footer">
+    © 2025 NLP App | Built with Flask & ❤️
+</footer>
+
+</body>
+</html>

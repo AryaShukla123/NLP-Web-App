@@ -1,0 +1,105 @@
+/* Layout */
+.paraphrase-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+}
+
+.paraphrase-card {
+    background: white;
+    max-width: 750px;
+    width: 100%;
+    padding: 40px;
+    border-radius: 22px;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.12);
+    animation: fadeUp 0.6s ease forwards;
+}
+
+/* Heading */
+.paraphrase-card h2 {
+    font-size: 26px;
+    color: #1f2937;
+    margin-bottom: 10px;
+}
+
+.paraphrase-card h2 i {
+    color: #7c3aed; /* purple AI vibe */
+}
+
+/* Subtitle */
+.subtitle {
+    font-size: 14px;
+    color: #6b7280;
+    margin-bottom: 30px;
+}
+
+/* Labels */
+label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
+}
+
+/* Textareas */
+textarea {
+    width: 100%;
+    min-height: 130px;
+    margin-top: 8px;
+    margin-bottom: 20px;
+    padding: 14px;
+    border-radius: 14px;
+    border: 1px solid #d1d5db;
+    resize: none;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+textarea:focus {
+    border-color: #7c3aed;
+    box-shadow: 0 0 0 3px rgba(124,58,237,0.15);
+}
+
+/* Disabled Output */
+textarea:disabled {
+    background: #f9fafb;
+    color: #6b7280;
+}
+
+/* Button */
+button {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 25px;
+    background: linear-gradient(135deg, #7c3aed, #5b21b6);
+    border: none;
+    color: white;
+    font-size: 15px;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 35px rgba(124,58,237,0.45);
+}
+
+/* Output label spacing */
+.output-label {
+    margin-top: 10px;
+    display: block;
+}
+
+/* Animation */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

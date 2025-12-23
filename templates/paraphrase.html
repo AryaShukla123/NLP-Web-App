@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NLP APP | Paraphrasing</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/paraphrase.css') }}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        NLP App <span class="welcome">| Paraphrasing</span>
+    </div>
+
+    <div class="logout">
+        <a href="/logout">Logout</a>
+    </div>
+</header>
+
+
+<section class="paraphrase-container">
+
+    <div class="paraphrase-card">
+
+        <h2><i class="fas fa-pen-nib"></i> Paraphrasing Tool</h2>
+        <p class="subtitle">
+            Rewrite text while preserving the original meaning with improved clarity.
+        </p>
+
+        <form>
+
+            <!-- Input -->
+            <label for="inputText">Original Text</label>
+            <textarea id="inputText" placeholder="Enter text to paraphrase..."></textarea>
+
+            <button type="submit">
+                <i class="fas fa-wand-magic-sparkles"></i> Paraphrase
+            </button>
+
+            <!-- Output -->
+            <label for="outputText" class="output-label">Paraphrased Text</label>
+            <textarea id="outputText" placeholder="Paraphrased text will appear here..." disabled></textarea>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<footer class="footer">
+    © 2025 NLP App | Built with Flask & ❤️
+</footer>
+
+</body>
+</html>

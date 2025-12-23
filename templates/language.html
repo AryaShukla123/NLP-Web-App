@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NLP APP | Language Detection</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/language.css') }}">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        NLP App <span class="welcome">| Language Detection</span>
+    </div>
+
+    <div class="logout">
+        <a href="/logout">Logout</a>
+    </div>
+</header>
+
+
+<section class="language-container">
+
+    <div class="language-card">
+
+        <h2><i class="fas fa-magnifying-glass"></i> Language Detection</h2>
+        <p class="subtitle">
+            Automatically identify the language of the given text.
+        </p>
+
+        <form>
+            <label for="text">Enter Text</label>
+            <textarea id="text" placeholder="Type or paste text here..."></textarea>
+
+            <button type="submit">
+                <i class="fas fa-brain"></i> Detect Language
+            </button>
+        </form>
+
+        <!-- Result -->
+        <div class="result">
+            <h4>Detected Language</h4>
+            <p class="placeholder">Language will appear here...</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer class="footer">
+    © 2025 NLP App | Built with Flask & ❤️
+</footer>
+
+</body>
+</html>

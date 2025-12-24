@@ -189,6 +189,58 @@ header {
     display: block;
 }
 
+.logout a {
+    color: white;
+    font-size: 15px;
+    padding: 8px 18px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #ff416c, #ff4b2b);
+    box-shadow: 0 8px 20px rgba(255, 75, 43, 0.5);
+    text-decoration: none;
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 12px 28px;
+
+    background: #eff6ff;
+    color: #1d4ed8;
+    border: 1px solid #bfdbfe;
+              /* deep rose */
+
+    border-radius: 999px;
+
+
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+
+    box-shadow: 0 8px 20px rgba(159, 18, 57, 0.15);
+
+    transition: all 0.3s ease;
+}
+
+.back-btn i {
+    font-size: 13px;
+}
+
+.back-btn:hover {
+    background: #ffe4e6;
+    transform: translateX(-6px);
+    box-shadow: 0 14px 30px rgba(159, 18, 57, 0.25);
+}
+
+.back-container {
+    margin-top: 35px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+
 
 
 

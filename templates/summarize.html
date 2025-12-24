@@ -32,9 +32,9 @@
             Generate a concise summary while retaining key information.
         </p>
 
-        <form>
+        <form action="/perform_summary" method="POST">
             <label for="longText">Input Text</label>
-            <textarea id="longText" placeholder="Paste long article or paragraph here..."></textarea>
+            <textarea name="text" id="longText" placeholder="Paste long article or paragraph here..."></textarea>
 
             <button type="submit">
                 <i class="fas fa-compress"></i> Summarize
@@ -42,9 +42,21 @@
         </form>
 
 
+
         <div class="summary-result">
             <h4>Summary</h4>
             <p class="placeholder">Summary will appear here...</p>
+
+            {% if result %}
+<div class="result-box">
+    <h4>Result</h4>
+    <p>{{ result }}</p>
+</div>
+{% endif %}
+        </div>
+
+        <div class="back-container">
+            <a href="/profile" class="back-btn">← Back to Dashboard</a>
         </div>
 
     </div>

@@ -32,15 +32,15 @@
             Measure how similar two texts are based on their meaning.
         </p>
 
-        <form>
+        <form action="/perform_semantic-similarity" method="POST">
 
 
             <label for="text1">Text A</label>
-            <textarea id="text1" placeholder="Enter first sentence or paragraph..."></textarea>
+            <textarea name="text1" id="text1" placeholder="Enter first sentence or paragraph..."></textarea>
 
 
             <label for="text2">Text B</label>
-            <textarea id="text2" placeholder="Enter second sentence or paragraph..."></textarea>
+            <textarea name="text2" id="text2" placeholder="Enter second sentence or paragraph..."></textarea>
 
             <button type="submit">
                 <i class="fas fa-equals"></i> Compare Similarity
@@ -49,9 +49,21 @@
         </form>
 
 
+
         <div class="similarity-result">
             <h4>Similarity Score</h4>
             <p class="placeholder">Score will appear here (0 – 1)</p>
+
+            {% if result %}
+<div class="result-box">
+    <h4>Result</h4>
+    <p>{{ result }}</p>
+</div>
+{% endif %}
+        </div>
+
+        <div class="back-container">
+            <a href="/profile" class="back-btn">← Back to Dashboard</a>
         </div>
 
     </div>

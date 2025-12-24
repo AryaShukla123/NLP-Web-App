@@ -31,47 +31,68 @@
             Translate text between multiple languages with high accuracy.
         </p>
 
+        <!-- FORM START -->
+        <form method="POST" action="/perform_translate">
 
-        <div class="language-row">
-            <div>
-                <label>From</label>
-                <select>
-                    <option>English</option>
-                    <option>Hindi</option>
-                    <option>French</option>
-                    <option>Spanish</option>
-                </select>
-            </div>
-
-            <div class="swap">
-                <i class="fas fa-right-left"></i>
-            </div>
-
-            <div>
-                <label>To</label>
-                <select>
-                    <option>Hindi</option>
-                    <option>English</option>
-                    <option>French</option>
-                    <option>Spanish</option>
-                </select>
-            </div>
+    <div class="language-row">
+        <div>
+            <label>From</label>
+            <select name="source_lang" required>
+                <option value="English">English</option>
+                <option value="Hindi">Hindi</option>
+                <option value="French">French</option>
+                <option value="Spanish">Spanish</option>
+            </select>
         </div>
 
+        <div class="swap">
+            <i class="fas fa-right-left"></i>
+        </div>
 
-        <label>Input Text</label>
-        <textarea placeholder="Enter text to translate..."></textarea>
+        <div>
+            <label>To</label>
+            <select name="target_lang" required>
+                <option value="English">English</option>
+                <option value="Hindi">Hindi</option>
+                <option value="French">French</option>
+                <option value="Spanish">Spanish</option>
+            </select>
+        </div>
+    </div>
 
-        <button>
-            <i class="fas fa-globe"></i> Translate
-        </button>
+    <label>Input Text</label>
+    <textarea
+        name="text"
+        placeholder="Enter text to translate..."
+        required></textarea>
+
+    <button type="submit">
+        <i class="fas fa-globe"></i> Translate
+    </button>
+
+
+
+</form>
+
 
         <label class="output-label">Translated Text</label>
         <textarea placeholder="Translated text will appear here..." disabled></textarea>
 
+        {% if result %}
+<div class="result-box">
+    <h4>Result</h4>
+    <p>{{ result }}</p>
+</div>
+{% endif %}
+
+        <div class="back-container">
+            <a href="/profile" class="back-btn">← Back to Dashboard</a>
+        </div>
+
     </div>
 
 </section>
+
 
 <footer class="footer">
     © 2025 NLP App | Built with Flask & ❤️

@@ -33,7 +33,7 @@
 
         <form action="/perform_ner" method="post">
             <label for="text">Enter Text</label>
-            <textarea name="ner_text" id="text" placeholder="Enter your text here..."></textarea>
+            <textarea name="text" id="text" placeholder="Enter your text here..."></textarea>
 
             <button type="submit">
                 <i class="fas fa-magic"></i> Analyze Text
@@ -41,9 +41,31 @@
         </form>
 
 
+
+
         <div class="output-box">
             <h4>Extracted Entities</h4>
             <p class="placeholder">Results will appear here...</p>
+
+            {% if entities %}
+<table>
+    <tr>
+        <th>Entity Type</th>
+        <th>Entity</th>
+    </tr>
+    {% for e in entities %}
+    <tr>
+        <td>{{ e.type }}</td>
+        <td>{{ e.value }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+
+        </div>
+
+        <div class="back-container">
+            <a href="/profile" class="back-btn">← Back to Dashboard</a>
         </div>
 
     </div>

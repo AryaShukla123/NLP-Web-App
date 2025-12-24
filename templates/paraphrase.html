@@ -31,21 +31,33 @@
             Rewrite text while preserving the original meaning with improved clarity.
         </p>
 
-        <form>
+        <form action="/perform_paraphrase" method="POST">
 
             <!-- Input -->
             <label for="inputText">Original Text</label>
-            <textarea id="inputText" placeholder="Enter text to paraphrase..."></textarea>
+            <textarea name="text" id="inputText" placeholder="Enter text to paraphrase..."></textarea>
 
             <button type="submit">
                 <i class="fas fa-wand-magic-sparkles"></i> Paraphrase
             </button>
 
+
+
             <!-- Output -->
             <label for="outputText" class="output-label">Paraphrased Text</label>
             <textarea id="outputText" placeholder="Paraphrased text will appear here..." disabled></textarea>
+            {% if result %}
+<div class="result-box">
+    <h4>Result</h4>
+    <p>{{ result }}</p>
+</div>
+{% endif %}
 
         </form>
+
+        <div class="back-container">
+            <a href="/profile" class="back-btn">← Back to Dashboard</a>
+        </div>
 
     </div>
 

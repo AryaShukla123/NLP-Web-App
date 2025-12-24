@@ -32,14 +32,16 @@
             Search documents based on meaning, not just keywords.
         </p>
 
-        <form>
+        <form action="/perform_semantic-search" method="POST">
             <label for="query">Search Query</label>
-            <input type="text" id="query" placeholder="Enter your search query...">
+            <input name="text" type="text" id="query" placeholder="Enter your search query...">
 
             <button type="submit">
                 <i class="fas fa-search"></i> Search
             </button>
         </form>
+
+
 
 
         <div class="results">
@@ -51,6 +53,12 @@
                     This is a sample result showing semantically relevant content.
                 </p>
                 <span class="score">Relevance: 0.92</span>
+                {% if result %}
+<div class="result-box">
+    <h4>Result</h4>
+    <p>{{ result }}</p>
+</div>
+{% endif %}
             </div>
 
             <div class="result-card">
@@ -58,8 +66,18 @@
                     Another meaningful result retrieved using embeddings.
                 </p>
                 <span class="score">Relevance: 0.87</span>
+                {% if result %}
+<div class="result-box">
+    <h4>Result</h4>
+    <p>{{ result }}</p>
+</div>
+{% endif %}
             </div>
 
+        </div>
+
+        <div class="back-container">
+            <a href="/profile" class="back-btn">← Back to Dashboard</a>
         </div>
 
     </div>

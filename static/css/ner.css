@@ -95,13 +95,5 @@ button:hover {
     color: #9ca3af;
 }
 
-.logout a {
-    color: white;
-    font-size: 15px;
-    padding: 8px 18px;
-    border-radius: 8px;
-    background: linear-gradient(135deg, #ff416c, #ff4b2b);
-    box-shadow: 0 8px 20px rgba(255, 75, 43, 0.5);
-    text-decoration: none;
-}
+
 

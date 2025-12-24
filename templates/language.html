@@ -32,19 +32,32 @@
             Automatically identify the language of the given text.
         </p>
 
-        <form>
+        <form action="/perform_language" method="POST">
             <label for="text">Enter Text</label>
-            <textarea id="text" placeholder="Type or paste text here..."></textarea>
+            <textarea name="text" id="text" placeholder="Type or paste text here..."></textarea>
 
             <button type="submit">
                 <i class="fas fa-brain"></i> Detect Language
             </button>
         </form>
 
+
+
         <!-- Result -->
         <div class="result">
             <h4>Detected Language</h4>
             <p class="placeholder">Language will appear here...</p>
+
+            {% if result %}
+<div class="result-box">
+    <h4>Result</h4>
+    <p>{{ result }}</p>
+</div>
+{% endif %}
+        </div>
+
+        <div class="back-container">
+            <a href="/profile" class="back-btn">← Back to Dashboard</a>
         </div>
 
     </div>

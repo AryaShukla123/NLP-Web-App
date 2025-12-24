@@ -32,11 +32,11 @@
             Ask questions and get accurate answers from the given context.
         </p>
 
-        <form>
+        <form action="/perform_qa" method="POST">
 
             <!-- Context -->
             <label for="context">Context</label>
-            <textarea id="context" placeholder="Enter paragraph or document here..."></textarea>
+            <textarea name="text" id="context" placeholder="Enter paragraph or document here..."></textarea>
 
             <!-- Question -->
             <label for="question">Question</label>
@@ -48,10 +48,23 @@
 
         </form>
 
+
+
         <!-- Answer -->
         <div class="answer-box">
             <h4>Answer</h4>
             <p class="placeholder">Answer will appear here...</p>
+
+            {% if result %}
+<div class="result-box">
+    <h4>Result</h4>
+    <p>{{ result }}</p>
+</div>
+{% endif %}
+        </div>
+
+        <div class="back-container">
+            <a href="/profile" class="back-btn">← Back to Dashboard</a>
         </div>
 
     </div>

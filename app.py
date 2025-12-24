@@ -1,5 +1,6 @@
 from flask import Flask,render_template,request,redirect
 from db import Database
+import api
 
 app = Flask(__name__)
 dbo = Database()
@@ -48,17 +49,35 @@ def profile():
 def ner():
     return render_template('ner.html')
 
-@app.route('/perform_ner', methods=['post'])
-def perform_ner():
-    text = request.form.get('ner_text')
-
 @app.route('/sentiment')
 def sentiment_analysis():
     return render_template('sentiment.html')
 
+@app.route("/perform_sentiment", methods=["POST"])
+def perform_sentiment():
+    text = request.form.get("text")
+
+    if not text:
+        return render_template("sentiment.html", result="Please enter some text")
+
+    result = api.sentiment_analysis(text)
+
+    print("🔥 SENTIMENT RESULT:", result)  # DEBUG LINE
+
+    return render_template("sentiment.html", result=result)
+
+
 @app.route('/abuse')
 def abuse_detection():
     return render_template('abuse.html')
+
+@app.route("/perform_abuse", methods=["GET", "POST"])
+def perform_abuse():
+    result = ""
+    if request.method == "POST":
+        text = request.form["text"]
+        result = api.abuse_detection(text)
+    return render_template("abuse.html", result=result)
 
 @app.route('/paraphrase')
 def paraphrasing():
@@ -91,6 +110,93 @@ def semantic_similarity():
 @app.route('/emotion')
 def emotion_detection():
     return render_template('emotion.html')
+
+@app.route("/perform_ner", methods=["GET","POST"])
+def perform_ner():
+    text = request.form["text"]
+    entities = api.ner(text)
+    return render_template("ner.html", entities=entities)
+
+
+
+@app.route("/perform_paraphrase", methods=["GET", "POST"])
+def perform_paraphrasing():
+    result = ""
+    if request.method == "POST":
+        text = request.form["text"]
+        result = api.paraphrase(text)
+    return render_template("paraphrase.html", result=result)
+
+
+@app.route("/perform_translate", methods=["POST"])
+def perform_translation():
+    text = request.form["text"]
+    source_lang = request.form["source_lang"]
+    target_lang = request.form["target_lang"]
+
+    result = api.translate_text(text, source_lang, target_lang)
+
+    return render_template(
+        "translate.html",
+        result=result
+    )
+
+
+
+@app.route("/perform_language", methods=["GET", "POST"])
+def perform_language():
+    result = ""
+    if request.method == "POST":
+        text = request.form["text"]
+        result = api.language_detection(text)
+    return render_template("language.html", result=result)
+
+
+@app.route("/perform_summary", methods=["GET", "POST"])
+def perform_summary():
+    result = ""
+    if request.method == "POST":
+        text = request.form["text"]
+        result = api.summarize(text)
+    return render_template("summary.html", result=result)
+
+
+@app.route("/perform_qa", methods=["GET", "POST"])
+def perform_qa():
+    result = ""
+    if request.method == "POST":
+        context = request.form["context"]
+        question = request.form["question"]
+        result = api.question_answer(context, question)
+    return render_template("qa.html", result=result)
+
+
+@app.route("/perform_semantic-search", methods=["GET", "POST"])
+def perform_semantic_search():
+    result = ""
+    if request.method == "POST":
+        text = request.form["text"]
+        result = api.semantic_search(text)
+    return render_template("semantic_search.html", result=result)
+
+
+@app.route("/perform_semantic-similarity", methods=["GET", "POST"])
+def perform_semantic_similarity():
+    result = ""
+    if request.method == "POST":
+        text1 = request.form["text1"]
+        text2 = request.form["text2"]
+        result = api.semantic_similarity(text1, text2)
+    return render_template("semantic_similarity.html", result=result)
+
+
+@app.route("/perform_emotion", methods=["GET", "POST"])
+def perform_emotion():
+    result = ""
+    if request.method == "POST":
+        text = request.form["text"]
+        result = api.emotion_detection(text)
+    return render_template("emotion.html", result=result)
 
 
 

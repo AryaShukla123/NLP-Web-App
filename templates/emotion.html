@@ -33,10 +33,10 @@
             Analyze text and identify the underlying emotion.
         </p>
 
-        <form>
+        <form action="/perform_emotion" method="POST">
 
             <label for="emotion-text">Enter Text</label>
-            <textarea id="emotion-text" placeholder="Type something to detect emotion..."></textarea>
+            <textarea name="text" id="emotion-text" placeholder="Type something to detect emotion..."></textarea>
 
             <button type="submit">
                 <i class="fas fa-heart-pulse"></i> Detect Emotion
@@ -44,10 +44,24 @@
 
         </form>
 
+
+
+
         <!-- Result -->
         <div class="emotion-result">
             <h4>Detected Emotion</h4>
             <p class="placeholder">Emotion will appear here</p>
+
+            {% if result %}
+<div class="result-box">
+    <h4>Result</h4>
+    <p>{{ result }}</p>
+</div>
+{% endif %}
+        </div>
+
+        <div class="back-container">
+            <a href="/profile" class="back-btn">← Back to Dashboard</a>
         </div>
 
     </div>

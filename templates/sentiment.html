@@ -31,9 +31,9 @@
             Analyze text sentiment as <b>Positive</b>, <b>Neutral</b>, or <b>Negative</b>.
         </p>
 
-        <form>
+        <form action="/perform_sentiment" method="POST">
             <label for="text">Enter Text</label>
-            <textarea id="text" placeholder="Type or paste your text here..."></textarea>
+            <textarea name="text" id="text" placeholder="Type or paste your text here..."></textarea>
 
             <button type="submit">
                 <i class="fas fa-chart-line"></i> Analyze Sentiment
@@ -41,9 +41,22 @@
         </form>
 
 
+
+
         <div class="result-box">
             <h4>Sentiment Result</h4>
             <p class="placeholder">Result will appear here...</p>
+
+            {% if result %}
+<div class="result-box">
+    <h3>Result</h3>
+    <p>{{ result }}</p>
+</div>
+{% endif %}
+        </div>
+
+        <div class="back-container">
+            <a href="/profile" class="back-btn">← Back to Dashboard</a>
         </div>
 
     </div>

@@ -120,3 +120,38 @@ button:hover {
         transform: translateY(0);
     }
 }
+
+/* Documents textarea */
+textarea {
+    width: 100%;
+    min-height: 160px;
+    padding: 16px;
+    margin-top: 8px;
+    margin-bottom: 22px;
+    border-radius: 18px;
+    border: 1px solid #d1d5db;
+    font-size: 14px;
+    font-family: inherit;
+    line-height: 1.6;
+    resize: vertical;
+    outline: none;
+    background: #f9fafb;
+    color: #111827;
+}
+
+/* Focus effect */
+textarea:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99,102,241,0.25);
+    background: #ffffff;
+}
+
+/* Placeholder */
+textarea::placeholder {
+    color: #9ca3af;
+}
+
+input[type="text"] {
+    background: #ffffff;
+}
+

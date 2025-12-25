@@ -18,7 +18,7 @@
     </div>
 
     <div class="logout">
-        <a href="/logout">Logout</a>
+        <a href="/">Logout</a>
     </div>
 </header>
 
@@ -51,16 +51,27 @@
 
 
         <div class="similarity-result">
-            <h4>Similarity Score</h4>
-            <p class="placeholder">Score will appear here (0 – 1)</p>
 
-            {% if result %}
-<div class="result-box">
-    <h4>Result</h4>
-    <p>{{ result }}</p>
+    <h4>Similarity Score</h4>
+
+    {% if score %}
+    <div class="score-badge">
+        {{ score }} / 1.00
+    </div>
+    {% endif %}
+
+    {% if result %}
+    <div class="result-box">
+        <h4>Explanation</h4>
+
+        <pre class="semantic-output">
+{{ result }}
+        </pre>
+    </div>
+    {% endif %}
+
 </div>
-{% endif %}
-        </div>
+
 
         <div class="back-container">
             <a href="/profile" class="back-btn">← Back to Dashboard</a>

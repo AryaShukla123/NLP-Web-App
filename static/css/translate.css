@@ -139,3 +139,7 @@ button:hover {
         transform: translateY(0);
     }
 }
+#outputText {
+    color: #000000;
+    font-weight: 500;
+}

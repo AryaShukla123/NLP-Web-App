@@ -17,7 +17,7 @@
     </div>
 
     <div class="logout">
-        <a href="/logout">Logout</a>
+        <a href="/">Logout</a>
     </div>
 </header>
 
@@ -45,13 +45,9 @@
 
             <!-- Output -->
             <label for="outputText" class="output-label">Paraphrased Text</label>
-            <textarea id="outputText" placeholder="Paraphrased text will appear here..." disabled></textarea>
-            {% if result %}
-<div class="result-box">
-    <h4>Result</h4>
-    <p>{{ result }}</p>
-</div>
-{% endif %}
+            <textarea id="outputText" placeholder="Paraphrased text will appear here..." disabled>
+                {% if result %}{{ result }}{% endif %}
+            </textarea>
 
         </form>
 

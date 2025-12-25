@@ -109,3 +109,39 @@ button:hover {
         transform: translateY(0);
     }
 }
+
+.semantic-output {
+    background: #ffffff;
+    padding: 18px;
+    border-radius: 14px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #111827;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    border: 1px solid #e5e7eb;
+    font-family: "Segoe UI", monospace;
+}
+
+.score-badge {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    color: white;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    width: fit-content;
+    margin-bottom: 16px;
+}
+
+.semantic-output {
+    background: #ffffff;
+    padding: 18px;
+    border-radius: 14px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #000000;   /* BLACK TEXT */
+    white-space: pre-wrap;
+    border: 1px solid #e5e7eb;
+    font-family: Consolas, monospace;
+}

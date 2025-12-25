@@ -157,8 +157,8 @@ def perform_summary():
     result = ""
     if request.method == "POST":
         text = request.form["text"]
-        result = api.summarize(text)
-    return render_template("summary.html", result=result)
+        result = api.summarization(text)
+    return render_template("summarize.html", result=result)
 
 
 @app.route("/perform_qa", methods=["GET", "POST"])
@@ -167,17 +167,20 @@ def perform_qa():
     if request.method == "POST":
         context = request.form["context"]
         question = request.form["question"]
-        result = api.question_answer(context, question)
+        result = api.question_answering(context, question)
     return render_template("qa.html", result=result)
 
 
-@app.route("/perform_semantic-search", methods=["GET", "POST"])
+@app.route("/perform_semantic-search", methods=["POST"])
 def perform_semantic_search():
     result = ""
     if request.method == "POST":
-        text = request.form["text"]
-        result = api.semantic_search(text)
+        query = request.form["query"]
+        documents = request.form["documents"]
+        result = api.semantic_search(query, documents)
+
     return render_template("semantic_search.html", result=result)
+
 
 
 @app.route("/perform_semantic-similarity", methods=["GET", "POST"])
@@ -186,8 +189,13 @@ def perform_semantic_similarity():
     if request.method == "POST":
         text1 = request.form["text1"]
         text2 = request.form["text2"]
-        result = api.semantic_similarity(text1, text2)
-    return render_template("semantic_similarity.html", result=result)
+        data = api.semantic_similarity(text1, text2)
+
+        return render_template(
+            "semantic_similarity.html",
+            score=data["score"],
+            result=data["explanation"]
+        )
 
 
 @app.route("/perform_emotion", methods=["GET", "POST"])

@@ -18,7 +18,7 @@
     </div>
 
     <div class="logout">
-        <a href="/logout">Logout</a>
+        <a href="/">Logout</a>
     </div>
 </header>
 
@@ -33,13 +33,19 @@
         </p>
 
         <form action="/perform_semantic-search" method="POST">
-            <label for="query">Search Query</label>
-            <input name="text" type="text" id="query" placeholder="Enter your search query...">
 
-            <button type="submit">
-                <i class="fas fa-search"></i> Search
-            </button>
-        </form>
+    <label>Search Query</label>
+    <input name="query" type="text" placeholder="Enter your search query..." required>
+
+    <label>Documents (Corpus)</label>
+    <textarea name="documents" placeholder="Enter documents to search from..." required></textarea>
+
+    <button type="submit">
+        <i class="fas fa-search"></i> Search
+    </button>
+
+</form>
+
 
 
 
@@ -50,9 +56,9 @@
 
             <div class="result-card">
                 <p class="result-text">
-                    This is a sample result showing semantically relevant content.
+                    Result will appear here...
                 </p>
-                <span class="score">Relevance: 0.92</span>
+
                 {% if result %}
 <div class="result-box">
     <h4>Result</h4>
@@ -61,18 +67,7 @@
 {% endif %}
             </div>
 
-            <div class="result-card">
-                <p class="result-text">
-                    Another meaningful result retrieved using embeddings.
-                </p>
-                <span class="score">Relevance: 0.87</span>
-                {% if result %}
-<div class="result-box">
-    <h4>Result</h4>
-    <p>{{ result }}</p>
-</div>
-{% endif %}
-            </div>
+
 
         </div>
 

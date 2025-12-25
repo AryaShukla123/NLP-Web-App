@@ -17,7 +17,7 @@
     </div>
 
     <div class="logout">
-        <a href="/logout">Logout</a>
+        <a href="/">Logout</a>
     </div>
 </header>
 
@@ -75,15 +75,11 @@
 </form>
 
 
-        <label class="output-label">Translated Text</label>
-        <textarea placeholder="Translated text will appear here..." disabled></textarea>
+        <label for="outputText" class="output-label">Translated Text</label>
+        <textarea id="outputText" placeholder="Translated text will appear here..." disabled>
 
-        {% if result %}
-<div class="result-box">
-    <h4>Result</h4>
-    <p>{{ result }}</p>
-</div>
-{% endif %}
+            {% if result %}{{ result }}{% endif %}
+        </textarea>
 
         <div class="back-container">
             <a href="/profile" class="back-btn">← Back to Dashboard</a>

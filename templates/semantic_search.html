@@ -14,7 +14,8 @@
 
 <header>
     <div class="logo">
-        NLP App <span class="welcome">| Semantic Search</span>
+        🧠 NLP App | Welcome {{ session['user_name'] }}
+        <span class="welcome">| Semantic Search</span>
     </div>
 
     <div class="logout">
@@ -35,10 +36,10 @@
         <form action="/perform_semantic-search" method="POST">
 
     <label>Search Query</label>
-    <input name="query" type="text" placeholder="Enter your search query..." required>
+    <input name="query" type="text" placeholder="Enter your search query..." value="{{ request.form.get('text', '') }}" required>
 
     <label>Documents (Corpus)</label>
-    <textarea name="documents" placeholder="Enter documents to search from..." required></textarea>
+    <textarea name="documents" placeholder="Enter documents to search from..." required>{{ request.form.get('text', '') }}</textarea>
 
     <button type="submit">
         <i class="fas fa-search"></i> Search

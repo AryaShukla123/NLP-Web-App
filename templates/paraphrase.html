@@ -13,7 +13,8 @@
 
 <header>
     <div class="logo">
-        NLP App <span class="welcome">| Paraphrasing</span>
+        🧠 NLP App | Welcome {{ session['user_name'] }}
+        <span class="welcome">| Paraphrasing</span>
     </div>
 
     <div class="logout">
@@ -35,7 +36,7 @@
 
             <!-- Input -->
             <label for="inputText">Original Text</label>
-            <textarea name="text" id="inputText" placeholder="Enter text to paraphrase..."></textarea>
+            <textarea name="text" id="inputText" placeholder="Enter text to paraphrase...">{{ request.form.get('text', '') }}</textarea>
 
             <button type="submit">
                 <i class="fas fa-wand-magic-sparkles"></i> Paraphrase

@@ -14,7 +14,8 @@
 
 <header>
     <div class="logo">
-        NLP App <span class="welcome">| Question Answering</span>
+        🧠 NLP App | Welcome {{ session['user_name'] }}
+        <span class="welcome">| Question Answering</span>
     </div>
 
     <div class="logout">
@@ -36,11 +37,11 @@
 
             <!-- Context -->
             <label for="context">Context</label>
-            <textarea name="context" id="context" placeholder="Enter paragraph or document here..."></textarea>
+            <textarea name="context" id="context" placeholder="Enter paragraph or document here...">{{ request.form.get('text', '') }}</textarea>
 
             <!-- Question -->
             <label for="question">Question</label>
-            <input name="question" type="text" id="question" placeholder="Ask your question here...">
+            <input name="question" type="text" id="question" placeholder="Ask your question here..." value="{{ request.form.get('text', '') }}">
 
             <button type="submit">
                 <i class="fas fa-bolt"></i> Get Answer

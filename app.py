@@ -1,8 +1,14 @@
-from flask import Flask,render_template,request,redirect
+from flask import Flask,render_template,request,redirect, url_for, session
 from db import Database
 import api
+import json
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 app = Flask(__name__)
+app.secret_key = os.getenv("SECRET_KEY")
 dbo = Database()
 
 @app.route('/')
@@ -29,7 +35,7 @@ def perform_registration():
 
     return fname + " " + lname + " " + email + " " + password
 
-@app.route('/perform_login',methods=['post'])
+@app.route('/perform_login', methods=['post'])
 def perform_login():
     email = request.form.get('user_email')
     password = request.form.get('user_password')
@@ -37,20 +43,39 @@ def perform_login():
     response = dbo.search(email, password)
 
     if response:
+
+        with open('users.json', 'r') as rf:
+            users = json.load(rf)
+
+        fname = users[email][0]
+        lname = users[email][1]
+
+        full_name = f"{fname} {lname}"
+
+        # SESSION SET
+        session["user_email"] = email
+        session["user_name"] = full_name
+
         return redirect('/profile')
     else:
         return render_template("login.html", message="Incorrect email/password")
 
 @app.route('/profile')
 def profile():
+    if "user_email" not in session:
+        return redirect(url_for("index"))
     return render_template('profile.html')
 
 @app.route('/ner')
 def ner():
+    if "user_email" not in session:
+        return redirect(url_for("index"))
     return render_template('ner.html')
 
 @app.route('/sentiment')
 def sentiment_analysis():
+    if "user_email" not in session:
+        return redirect(url_for("index"))
     return render_template('sentiment.html')
 
 @app.route("/perform_sentiment", methods=["POST"])
@@ -69,6 +94,8 @@ def perform_sentiment():
 
 @app.route('/abuse')
 def abuse_detection():
+    if "user_email" not in session:
+        return redirect(url_for("index"))
     return render_template('abuse.html')
 
 @app.route("/perform_abuse", methods=["GET", "POST"])
@@ -81,34 +108,50 @@ def perform_abuse():
 
 @app.route('/paraphrase')
 def paraphrasing():
+    if "user_email" not in session:
+        return redirect(url_for("index"))
     return render_template('paraphrase.html')
 
 @app.route('/translate')
 def translation():
+    if "user_email" not in session:
+        return redirect(url_for("index"))
     return render_template('translate.html')
 
 @app.route('/language')
 def language_detection():
+    if "user_email" not in session:
+        return redirect(url_for("index"))
     return render_template('language.html')
 
 @app.route('/summarize')
 def summarization():
+    if "user_email" not in session:
+        return redirect(url_for("index"))
     return render_template('summarize.html')
 
 @app.route('/qa')
 def question_answering():
+    if "user_email" not in session:
+        return redirect(url_for("index"))
     return render_template('qa.html')
 
 @app.route('/semantic_search')
 def semantic_search():
+    if "user_email" not in session:
+        return redirect(url_for("index"))
     return render_template('semantic_search.html')
 
 @app.route('/semantic_similarity')
 def semantic_similarity():
+    if "user_email" not in session:
+        return redirect(url_for("index"))
     return render_template('semantic_similarity.html')
 
 @app.route('/emotion')
 def emotion_detection():
+    if "user_email" not in session:
+        return redirect(url_for("index"))
     return render_template('emotion.html')
 
 @app.route("/perform_ner", methods=["GET","POST"])
@@ -205,6 +248,12 @@ def perform_emotion():
         text = request.form["text"]
         result = api.emotion_detection(text)
     return render_template("emotion.html", result=result)
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for("index"))
+
 
 
 

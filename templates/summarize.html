@@ -14,7 +14,8 @@
 
 <header>
     <div class="logo">
-        NLP App <span class="welcome">| Text Summarization</span>
+        🧠 NLP App | Welcome {{ session['user_name'] }}
+        <span class="welcome">| Text Summarization</span>
     </div>
 
     <div class="logout">
@@ -34,7 +35,7 @@
 
         <form action="/perform_summary" method="POST">
             <label for="longText">Input Text</label>
-            <textarea name="text" id="longText" placeholder="Paste long article or paragraph here..."></textarea>
+            <textarea name="text" id="longText" placeholder="Paste long article or paragraph here...">{{ request.form.get('text', '') }}</textarea>
 
             <button type="submit">
                 <i class="fas fa-compress"></i> Summarize

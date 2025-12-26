@@ -13,7 +13,8 @@
 
 <header>
     <div class="logo">
-        NLP App <span class="welcome">| Sentiment Analysis</span>
+        🧠 NLP App | Welcome {{ session['user_name'] }}
+        <span class="welcome">| Sentiment Analysis</span>
     </div>
 
     <div class="logout">
@@ -33,7 +34,7 @@
 
         <form action="/perform_sentiment" method="POST">
             <label for="text">Enter Text</label>
-            <textarea name="text" id="text" placeholder="Type or paste your text here..."></textarea>
+            <textarea name="text" id="text" placeholder="Type or paste your text here...">{{ request.form.get('text', '') }}</textarea>
 
             <button type="submit">
                 <i class="fas fa-chart-line"></i> Analyze Sentiment

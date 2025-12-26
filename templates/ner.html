@@ -13,7 +13,8 @@
 
     <header>
     <div class="logo">
-       🧠 NLP App <span class="welcome">| Named Entity Recognition</span>
+       🧠 NLP App | Welcome {{ session['user_name'] }}
+        <span class="welcome">| Named Entity Recognition</span>
     </div>
 
     <div class="logout">
@@ -33,7 +34,7 @@
 
         <form action="/perform_ner" method="post">
             <label for="text">Enter Text</label>
-            <textarea name="text" id="text" placeholder="Enter your text here..."></textarea>
+            <textarea name="text" id="text" placeholder="Enter your text here...">{{ request.form.get('text', '') }}</textarea>
 
             <button type="submit">
                 <i class="fas fa-magic"></i> Analyze Text

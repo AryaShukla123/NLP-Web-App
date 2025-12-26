@@ -13,7 +13,8 @@
 
 <header>
     <div class="logo">
-        NLP App <span class="welcome">| Translation</span>
+        🧠 NLP App | Welcome {{ session['user_name'] }}
+        <span class="welcome">| Translation</span>
     </div>
 
     <div class="logout">
@@ -37,12 +38,30 @@
     <div class="language-row">
         <div>
             <label>From</label>
-            <select name="source_lang" required>
-                <option value="English">English</option>
-                <option value="Hindi">Hindi</option>
-                <option value="French">French</option>
-                <option value="Spanish">Spanish</option>
-            </select>
+            <select name="source_lang">
+    <option value="">Select language</option>
+
+    <option value="English"
+        {% if request.form.get('source_lang') == 'English' %}selected{% endif %}>
+        English
+    </option>
+
+    <option value="Hindi"
+        {% if request.form.get('source_lang') == 'Hindi' %}selected{% endif %}>
+        Hindi
+    </option>
+
+    <option value="French"
+        {% if request.form.get('source_lang') == 'French' %}selected{% endif %}>
+        French
+    </option>
+
+    <option value="Spanish"
+        {% if request.form.get('source_lang') == 'Spanish' %}selected{% endif %}>
+        Spanish
+    </option>
+</select>
+
         </div>
 
         <div class="swap">
@@ -51,12 +70,30 @@
 
         <div>
             <label>To</label>
-            <select name="target_lang" required>
-                <option value="English">English</option>
-                <option value="Hindi">Hindi</option>
-                <option value="French">French</option>
-                <option value="Spanish">Spanish</option>
-            </select>
+            <select name="target_lang">
+    <option value="">Select language</option>
+
+    <option value="English"
+        {% if request.form.get('target_lang') == 'English' %}selected{% endif %}>
+        English
+    </option>
+
+    <option value="Hindi"
+        {% if request.form.get('target_lang') == 'Hindi' %}selected{% endif %}>
+        Hindi
+    </option>
+
+    <option value="French"
+        {% if request.form.get('target_lang') == 'French' %}selected{% endif %}>
+        French
+    </option>
+
+    <option value="Spanish"
+        {% if request.form.get('target_lang') == 'Spanish' %}selected{% endif %}>
+        Spanish
+    </option>
+</select>
+
         </div>
     </div>
 
@@ -64,7 +101,7 @@
     <textarea
         name="text"
         placeholder="Enter text to translate..."
-        required></textarea>
+        required>{{ request.form.get('text', '') }}</textarea>
 
     <button type="submit">
         <i class="fas fa-globe"></i> Translate

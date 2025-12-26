@@ -14,7 +14,8 @@
 
 <header>
     <div class="logo">
-        NLP App <span class="welcome">| Semantic Similarity</span>
+        🧠 NLP App | Welcome {{ session['user_name'] }}
+        <span class="welcome">| Semantic Similarity</span>
     </div>
 
     <div class="logout">
@@ -36,11 +37,11 @@
 
 
             <label for="text1">Text A</label>
-            <textarea name="text1" id="text1" placeholder="Enter first sentence or paragraph..."></textarea>
+            <textarea name="text1" id="text1" placeholder="Enter first sentence or paragraph...">{{ request.form.get('text', '') }}</textarea>
 
 
             <label for="text2">Text B</label>
-            <textarea name="text2" id="text2" placeholder="Enter second sentence or paragraph..."></textarea>
+            <textarea name="text2" id="text2" placeholder="Enter second sentence or paragraph...">{{ request.form.get('text', '') }}</textarea>
 
             <button type="submit">
                 <i class="fas fa-equals"></i> Compare Similarity

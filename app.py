@@ -11,6 +11,19 @@ app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY")
 dbo = Database()
 
+# List of routes that do not require login
+EXEMPT_ROUTES = ['index', 'register', 'perform_login', 'perform_registration', 'static']
+
+
+@app.before_request
+def check_session():
+
+    if request.endpoint in EXEMPT_ROUTES:
+        return None
+
+    if "user_email" not in session:
+        return redirect(url_for('index'))
+
 @app.route('/')
 def index():
     return render_template('login.html')
@@ -62,20 +75,17 @@ def perform_login():
 
 @app.route('/profile')
 def profile():
-    if "user_email" not in session:
-        return redirect(url_for("index"))
+
     return render_template('profile.html')
 
 @app.route('/ner')
 def ner():
-    if "user_email" not in session:
-        return redirect(url_for("index"))
+
     return render_template('ner.html')
 
 @app.route('/sentiment')
 def sentiment_analysis():
-    if "user_email" not in session:
-        return redirect(url_for("index"))
+
     return render_template('sentiment.html')
 
 @app.route("/perform_sentiment", methods=["POST"])
@@ -94,8 +104,7 @@ def perform_sentiment():
 
 @app.route('/abuse')
 def abuse_detection():
-    if "user_email" not in session:
-        return redirect(url_for("index"))
+
     return render_template('abuse.html')
 
 @app.route("/perform_abuse", methods=["GET", "POST"])
@@ -108,50 +117,42 @@ def perform_abuse():
 
 @app.route('/paraphrase')
 def paraphrasing():
-    if "user_email" not in session:
-        return redirect(url_for("index"))
+
     return render_template('paraphrase.html')
 
 @app.route('/translate')
 def translation():
-    if "user_email" not in session:
-        return redirect(url_for("index"))
+
     return render_template('translate.html')
 
 @app.route('/language')
 def language_detection():
-    if "user_email" not in session:
-        return redirect(url_for("index"))
+
     return render_template('language.html')
 
 @app.route('/summarize')
 def summarization():
-    if "user_email" not in session:
-        return redirect(url_for("index"))
+
     return render_template('summarize.html')
 
 @app.route('/qa')
 def question_answering():
-    if "user_email" not in session:
-        return redirect(url_for("index"))
+
     return render_template('qa.html')
 
 @app.route('/semantic_search')
 def semantic_search():
-    if "user_email" not in session:
-        return redirect(url_for("index"))
+
     return render_template('semantic_search.html')
 
 @app.route('/semantic_similarity')
 def semantic_similarity():
-    if "user_email" not in session:
-        return redirect(url_for("index"))
+
     return render_template('semantic_similarity.html')
 
 @app.route('/emotion')
 def emotion_detection():
-    if "user_email" not in session:
-        return redirect(url_for("index"))
+
     return render_template('emotion.html')
 
 @app.route("/perform_ner", methods=["GET","POST"])

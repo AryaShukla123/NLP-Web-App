@@ -48,26 +48,18 @@ def perform_registration():
 
     return fname + " " + lname + " " + email + " " + password
 
+
 @app.route('/perform_login', methods=['post'])
 def perform_login():
     email = request.form.get('user_email')
     password = request.form.get('user_password')
 
-    response = dbo.search(email, password)
+    user_info = dbo.search(email, password)
 
-    if response:
-
-        with open('users.json', 'r') as rf:
-            users = json.load(rf)
-
-        fname = users[email][0]
-        lname = users[email][1]
-
-        full_name = f"{fname} {lname}"
-
-        # SESSION SET
+    if user_info:
+        # Save details to session
         session["user_email"] = email
-        session["user_name"] = full_name
+        session["user_name"] = f"{user_info[0]} {user_info[1]}"
 
         return redirect('/profile')
     else:
@@ -97,7 +89,7 @@ def perform_sentiment():
 
     result = api.sentiment_analysis(text)
 
-    print("🔥 SENTIMENT RESULT:", result)  # DEBUG LINE
+    print("🔥 SENTIMENT RESULT:", result)
 
     return render_template("sentiment.html", result=result)
 

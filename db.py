@@ -20,10 +20,11 @@ class Database:
         with open('users.json', 'r') as rf:
             users = json.load(rf)
 
-            if email in users and users[email][2] == password:
-                return {
-                    "email": email,
-                    "name": users[email][0] + " " + users[email][1]
-                }
+        if email in users:
+            if users[email][2] == password:
+
+                return users[email]
             else:
                 return None
+        else:
+            return None

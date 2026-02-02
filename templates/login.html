@@ -19,7 +19,7 @@
         <p class="subtitle">Please login to continue</p>
 
         {% if message %}
-           <p style="color:#008000" class="subtitle">{{ message }}</p>
+           <p class="message-{{ category }}" class="subtitle">{{ message }}</p>
         {% endif %}
 
         <form action="/perform_login", method="post">

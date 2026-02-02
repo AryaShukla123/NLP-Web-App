@@ -18,7 +18,7 @@
         <p class="subtitle">Join us and explore NLP magic</p>
 
         {% if message %}
-           <p style="color:#780606" class="subtitle">{{ message }}</p>
+           <p class="message-{{ category }}" class="subtitle">{{ message }}</p>
         {% endif %}
 
         <form action="/perform_registration" method="post">

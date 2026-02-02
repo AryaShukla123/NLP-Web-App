@@ -95,3 +95,19 @@ button:hover {
 .login-text a:hover {
     text-decoration: underline;
 }
+
+.message-success {
+        color: #28a745; /* Nice Green */
+        background-color: #d4edda;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+}
+
+.message-error {
+        color: #dc3545; /* Nice Red */
+        background-color: #f8d7da;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+}

@@ -5,6 +5,7 @@ import json
 from dotenv import load_dotenv
 import os
 
+
 load_dotenv()
 
 app = Flask(__name__)
@@ -13,7 +14,6 @@ dbo = Database()
 
 # List of routes that do not require login
 EXEMPT_ROUTES = ['index', 'register', 'perform_login', 'perform_registration', 'static']
-
 
 @app.before_request
 def check_session():
@@ -42,9 +42,9 @@ def perform_registration():
     response = dbo.insert(fname,lname,email,password)
 
     if response:
-        return render_template("login.html", message="Registration successful. Kindly login to proceed")
+        return render_template("login.html", message="Registration successful. Kindly login to proceed", category="success")
     else:
-        return render_template("register.html", message="Email already exists")
+        return render_template("register.html", message="Email already exists", category="error")
 
     return fname + " " + lname + " " + email + " " + password
 
@@ -63,7 +63,7 @@ def perform_login():
 
         return redirect('/profile')
     else:
-        return render_template("login.html", message="Incorrect email/password")
+        return render_template("login.html", message="Incorrect email/password", category="error")
 
 @app.route('/profile')
 def profile():

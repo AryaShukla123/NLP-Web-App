@@ -95,7 +95,7 @@ If you have any questions or would like to discuss this project, feel free to re
 * **Name:** Arya Shukla
 * **GitHub:** [@AryaShukla123](https://github.com/AryaShukla123)
 * **LinkedIn:** [Arya Shukla](www.linkedin.com/in/arya-shukla-3517a3322)
-* **Email:** [arya.bnsd@gmail.com](mailto:arya.bnsd@gmail.com)
+* **Email:** [arya.bnsd@gmail.com](https://mail.google.com/mail/?view=cm&fs=1&to=arya.bnsd@gmail.com)
 
 ---
 **Made with ❤️ and Python**

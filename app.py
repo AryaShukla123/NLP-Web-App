@@ -1,16 +1,32 @@
 from flask import Flask,render_template,request,redirect, url_for, session
-from db import Database
 import api
-import json
 from dotenv import load_dotenv
 import os
-
+from flask_sqlalchemy import SQLAlchemy
 
 load_dotenv()
 
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY")
-dbo = Database()
+
+db_url = os.getenv('DATABASE_URL')
+if db_url and db_url.startswith("postgres://"):
+    db_url = db_url.replace("postgres://", "postgresql://", 1)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = db_url
+
+db = SQLAlchemy(app)
+
+# defines User table
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    fname = db.Column(db.String(100), nullable=False)
+    lname = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password = db.Column(db.String(120), nullable=False)
+
+with app.app_context():
+    db.create_all()
 
 # List of routes that do not require login
 EXEMPT_ROUTES = ['index', 'register', 'perform_login', 'perform_registration', 'static']
@@ -32,21 +48,29 @@ def index():
 def register():
     return render_template('register.html')
 
-@app.route('/perform_registration',methods=['post'])
+
+@app.route('/perform_registration', methods=['post'])
 def perform_registration():
     fname = request.form.get('user_fname')
     lname = request.form.get('user_lname')
     email = request.form.get('user_email')
     password = request.form.get('user_password')
 
-    response = dbo.insert(fname,lname,email,password)
+    existing_user = User.query.filter_by(email=email).first()
 
-    if response:
-        return render_template("login.html", message="Registration successful. Kindly login to proceed", category="success")
-    else:
+    if existing_user:
         return render_template("register.html", message="Email already exists", category="error")
 
-    return fname + " " + lname + " " + email + " " + password
+    # SQL Insert Logic
+    try:
+        new_user = User(fname=fname, lname=lname, email=email, password=password)
+        db.session.add(new_user)
+        db.session.commit()
+        return render_template("login.html", message="Registration successful. Kindly login to proceed",
+                               category="success")
+    except:
+        db.session.rollback()
+        return render_template("register.html", message="Something went wrong", category="error")
 
 
 @app.route('/perform_login', methods=['post'])
@@ -54,13 +78,13 @@ def perform_login():
     email = request.form.get('user_email')
     password = request.form.get('user_password')
 
-    user_info = dbo.search(email, password)
+    # SQL Search Logic
+    user = User.query.filter_by(email=email).first()
 
-    if user_info:
-        # Save details to session
-        session["user_email"] = email
-        session["user_name"] = f"{user_info[0]} {user_info[1]}"
-
+    if user and user.password == password:
+        # Save details to session exactly as before
+        session["user_email"] = user.email
+        session["user_name"] = f"{user.fname} {user.lname}"
         return redirect('/profile')
     else:
         return render_template("login.html", message="Incorrect email/password", category="error")

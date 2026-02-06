@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My History</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="container mt-5">
+    <h2>Your AI Journey 📜</h2>
+    <hr>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Type</th>
+                <th>What you sent</th>
+                <th>AI Result</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in history %}
+            <tr>
+                <td><strong>{{ item.operation }}</strong></td>
+                <td>{{ item.input_text }}</td>
+                <td>{{ item.result }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <a href="/profile" class="btn btn-secondary">Back to Dashboard</a>
+</body>
+</html>

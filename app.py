@@ -25,6 +25,13 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(120), nullable=False)
 
+class History(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_email = db.Column(db.String(120), nullable=False)
+    operation = db.Column(db.String(50), nullable=False)
+    input_text = db.Column(db.Text, nullable=False)
+    result = db.Column(db.Text, nullable=False)
+
 with app.app_context():
     db.create_all()
 
@@ -78,16 +85,22 @@ def perform_login():
     email = request.form.get('user_email')
     password = request.form.get('user_password')
 
-    # SQL Search Logic
+
     user = User.query.filter_by(email=email).first()
 
     if user and user.password == password:
-        # Save details to session exactly as before
+
         session["user_email"] = user.email
         session["user_name"] = f"{user.fname} {user.lname}"
         return redirect('/profile')
     else:
         return render_template("login.html", message="Incorrect email/password", category="error")
+
+@app.route('/view_history')
+def view_history():
+    # Find all history records for the logged in user
+    user_history = History.query.filter_by(user_email=session['user_email']).all()
+    return render_template('history.html', history=user_history)
 
 @app.route('/profile')
 def profile():
@@ -113,8 +126,16 @@ def perform_sentiment():
 
     result = api.sentiment_analysis(text)
 
-    print("🔥 SENTIMENT RESULT:", result)
+    new_history = History(
+        user_email=session['user_email'],
+        operation="Sentiment Analysis",
+        input_text=text,
+        result=str(result)
+    )
+    db.session.add(new_history)
+    db.session.commit()
 
+    print("🔥 SENTIMENT RESULT:", result)
     return render_template("sentiment.html", result=result)
 
 

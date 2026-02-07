@@ -150,6 +150,16 @@ def perform_abuse():
     if request.method == "POST":
         text = request.form["text"]
         result = api.abuse_detection(text)
+
+        new_history = History(
+            user_email=session['user_email'],
+            operation="Abuse Detection",
+            input_text=text,
+            result=str(result)
+        )
+        db.session.add(new_history)
+        db.session.commit()
+
     return render_template("abuse.html", result=result)
 
 @app.route('/paraphrase')
@@ -196,8 +206,17 @@ def emotion_detection():
 def perform_ner():
     text = request.form["text"]
     entities = api.ner(text)
-    return render_template("ner.html", entities=entities)
 
+    new_history = History(
+        user_email=session['user_email'],
+        operation="Named Entity Recognition",
+        input_text=text,
+        result=str(entities)
+    )
+    db.session.add(new_history)
+    db.session.commit()
+
+    return render_template("ner.html", entities=entities)
 
 
 @app.route("/perform_paraphrase", methods=["GET", "POST"])
@@ -206,6 +225,16 @@ def perform_paraphrasing():
     if request.method == "POST":
         text = request.form["text"]
         result = api.paraphrase(text)
+
+        new_history = History(
+            user_email=session['user_email'],
+            operation="Paraphrasing",
+            input_text=text,
+            result=str(result)
+        )
+        db.session.add(new_history)
+        db.session.commit()
+
     return render_template("paraphrase.html", result=result)
 
 
@@ -217,11 +246,16 @@ def perform_translation():
 
     result = api.translate_text(text, source_lang, target_lang)
 
-    return render_template(
-        "translate.html",
-        result=result
+    new_history = History(
+        user_email=session['user_email'],
+        operation=f"Translation ({source_lang} to {target_lang})",
+        input_text=text,
+        result=str(result)
     )
+    db.session.add(new_history)
+    db.session.commit()
 
+    return render_template("translate.html", result=result)
 
 
 @app.route("/perform_language", methods=["GET", "POST"])
@@ -230,6 +264,16 @@ def perform_language():
     if request.method == "POST":
         text = request.form["text"]
         result = api.language_detection(text)
+
+        new_history = History(
+            user_email=session['user_email'],
+            operation="Language Detection",
+            input_text=text,
+            result=str(result)
+        )
+        db.session.add(new_history)
+        db.session.commit()
+
     return render_template("language.html", result=result)
 
 
@@ -239,6 +283,16 @@ def perform_summary():
     if request.method == "POST":
         text = request.form["text"]
         result = api.summarization(text)
+
+        new_history = History(
+            user_email=session['user_email'],
+            operation="Summarization",
+            input_text=text,
+            result=str(result)
+        )
+        db.session.add(new_history)
+        db.session.commit()
+
     return render_template("summarize.html", result=result)
 
 
@@ -249,6 +303,16 @@ def perform_qa():
         context = request.form["context"]
         question = request.form["question"]
         result = api.question_answering(context, question)
+
+        new_history = History(
+            user_email=session['user_email'],
+            operation="Question Answering",
+            input_text=f"Q: {question} | Context: {context[:50]}...",
+            result=str(result)
+        )
+        db.session.add(new_history)
+        db.session.commit()
+
     return render_template("qa.html", result=result)
 
 
@@ -260,9 +324,16 @@ def perform_semantic_search():
         documents = request.form["documents"]
         result = api.semantic_search(query, documents)
 
+        new_history = History(
+            user_email=session['user_email'],
+            operation="Semantic Search",
+            input_text=f"Query: {query}",
+            result=str(result)
+        )
+        db.session.add(new_history)
+        db.session.commit()
+
     return render_template("semantic_search.html", result=result)
-
-
 
 @app.route("/perform_semantic-similarity", methods=["GET", "POST"])
 def perform_semantic_similarity():
@@ -272,12 +343,20 @@ def perform_semantic_similarity():
         text2 = request.form["text2"]
         data = api.semantic_similarity(text1, text2)
 
+        new_history = History(
+            user_email=session['user_email'],
+            operation="Semantic Similarity",
+            input_text=f"T1: {text1[:30]}.. | T2: {text2[:30]}..",
+            result=f"Score: {data['score']} | {data['explanation']}"
+        )
+        db.session.add(new_history)
+        db.session.commit()
+
         return render_template(
             "semantic_similarity.html",
             score=data["score"],
             result=data["explanation"]
         )
-
 
 @app.route("/perform_emotion", methods=["GET", "POST"])
 def perform_emotion():
@@ -285,6 +364,16 @@ def perform_emotion():
     if request.method == "POST":
         text = request.form["text"]
         result = api.emotion_detection(text)
+
+        new_history = History(
+            user_email=session['user_email'],
+            operation="Emotion Detection",
+            input_text=text,
+            result=str(result)
+        )
+        db.session.add(new_history)
+        db.session.commit()
+
     return render_template("emotion.html", result=result)
 
 @app.route('/logout')

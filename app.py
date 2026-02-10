@@ -102,6 +102,26 @@ def view_history():
     user_history = History.query.filter_by(user_email=session['user_email']).all()
     return render_template('history.html', history=user_history)
 
+
+@app.route('/delete_history/<int:id>')
+def delete_history(id):
+    item = History.query.get(id)
+
+    # Security check
+    if item and item.user_email == session['user_email']:
+        db.session.delete(item)
+        db.session.commit()
+
+    return redirect('/view_history')
+
+
+@app.route('/clear_all_history')
+def clear_all_history():
+    # Delete all records for the current user
+    History.query.filter_by(user_email=session['user_email']).delete()
+    db.session.commit()
+    return redirect('/view_history')
+
 @app.route('/profile')
 def profile():
 

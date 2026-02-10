@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <title>My History</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body class="container mt-5">
     <h2>Your AI Journey 📜</h2>
+    <a href="/clear_all_history" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">🗑️ Clear All</a>
     <hr>
     <table class="table table-striped">
         <thead class="thead-dark">
@@ -22,6 +25,11 @@
                 <td><strong>{{ item.operation }}</strong></td>
                 <td>{{ item.input_text }}</td>
                 <td>{{ item.result }}</td>
+                <td>
+                <a href="/delete_history/{{ item.id }}" class="text-danger" title="Delete">
+                    <i class="fas fa-trash"></i>
+                </a>
+                </td>
             </tr>
             {% endfor %}
         </tbody>

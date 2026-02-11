@@ -2,39 +2,51 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My History</title>
+    <title>Activity History</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/history.css') }}">
 </head>
-<body class="container mt-5">
-    <h2>Your AI Journey 📜</h2>
-    <a href="/clear_all_history" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">🗑️ Clear All</a>
-    <hr>
-    <table class="table table-striped">
-        <thead class="thead-dark">
-            <tr>
-                <th>Type</th>
-                <th>What you sent</th>
-                <th>AI Result</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in history %}
-            <tr>
-                <td><strong>{{ item.operation }}</strong></td>
-                <td>{{ item.input_text }}</td>
-                <td>{{ item.result }}</td>
-                <td>
-                <a href="/delete_history/{{ item.id }}" class="text-danger" title="Delete">
-                    <i class="fas fa-trash"></i>
-                </a>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <br>
-    <a href="/profile" class="btn btn-secondary">Back to Dashboard</a>
+<body class="container py-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-5">
+        <div>
+            <h2 class="font-weight-bold">Activity Feed 📜</h2>
+            <p class="text-muted">Review your recent AI interactions</p>
+        </div>
+        <div>
+            <a href="/clear_all_history" class="btn btn-outline-danger btn-sm" onclick="return confirm('Clear everything?')">🗑️ Reset History</a>
+            <a href="/profile" class="btn btn-dark btn-sm ml-2">Back to Dashboard</a>
+        </div>
+    </div>
+
+    {% for item in history %}
+    <div class="history-card">
+        <div class="d-flex justify-content-between align-items-start">
+            <span class="op-badge">{{ item.operation }}</span>
+            <a href="/delete_history/{{ item.id }}" class="text-muted hover-red" onclick="return confirm('Delete this log?')">
+                <i class="fas fa-times"></i>
+            </a>
+        </div>
+
+        <div class="row text-section">
+            <div class="col-md-6">
+                <span class="label">Your Input</span>
+                <p class="content">{{ item.input_text }}</p>
+            </div>
+            <div class="col-md-6" style="border-left: 1px dashed #e2e8f0;">
+                <span class="label">AI Response</span>
+                <p class="content"><strong>{{ item.result }}</strong></p>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="text-center py-5">
+        <i class="fas fa-ghost fa-3x text-muted mb-3"></i>
+        <p class="text-muted">Your history is a ghost town. Try a tool!</p>
+    </div>
+    {% endfor %}
+
 </body>
 </html>

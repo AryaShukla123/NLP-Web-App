@@ -3,6 +3,7 @@ import api
 from dotenv import load_dotenv
 import os
 from flask_sqlalchemy import SQLAlchemy
+from werkzeug.security import generate_password_hash, check_password_hash
 
 load_dotenv()
 
@@ -70,7 +71,10 @@ def perform_registration():
 
     # SQL Insert Logic
     try:
-        new_user = User(fname=fname, lname=lname, email=email, password=password)
+
+        hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
+
+        new_user = User(fname=fname, lname=lname, email=email, password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
         return render_template("login.html", message="Registration successful. Kindly login to proceed",
@@ -85,11 +89,9 @@ def perform_login():
     email = request.form.get('user_email')
     password = request.form.get('user_password')
 
-
     user = User.query.filter_by(email=email).first()
 
-    if user and user.password == password:
-
+    if user and check_password_hash(user.password, password):
         session["user_email"] = user.email
         session["user_name"] = f"{user.fname} {user.lname}"
         return redirect('/profile')

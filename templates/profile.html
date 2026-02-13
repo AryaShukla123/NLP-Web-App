@@ -12,6 +12,8 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 <body>
 
@@ -31,6 +33,57 @@
 
     <h1>Welcome to NLP Dashboard</h1>
     <p class="subtitle">Choose a task to get started</p>
+
+    <div class="container mt-5">
+        <div class="card stats-card p-4">
+            <h4 class="stats-title">Your Usage Statistics 📊</h4>
+            <div class="chart-wrapper">
+                <canvas id="usageChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Passing Python data to JS
+        const labels = {{ labels|tojson }};
+        const values = {{ values|tojson }};
+
+        const ctx = document.getElementById('usageChart').getContext('2d');
+
+        // Check if we have data to show
+        if (labels.length === 0) {
+            ctx.font = "16px Poppins";
+            ctx.fillStyle = "#94a3b8";
+            ctx.textAlign = "center";
+            ctx.fillText("No data yet. Use some tools!", 200, 100);
+        } else {
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Tool Usage',
+                        data: values,
+                        backgroundColor: [
+                            '#4f46e5', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#06b6d4'
+                        ],
+                        borderWidth: 2,
+                        hoverOffset: 10
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { font: { family: 'Poppins', size: 12 } }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
 
     <div class="history-container">
         <a href="/view_history" class="history-btn">

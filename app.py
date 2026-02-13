@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 import os
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
+from sqlalchemy import func
 
 load_dotenv()
 
@@ -126,8 +127,20 @@ def clear_all_history():
 
 @app.route('/profile')
 def profile():
+    if 'user_email' not in session:
+        return redirect('/')
 
-    return render_template('profile.html')
+    # Query to count occurrences of each operation for the logged-in user
+    stats_query = db.session.query(
+        History.operation,
+        func.count(History.id)
+    ).filter_by(user_email=session['user_email']).group_by(History.operation).all()
+
+    # Convert to format Chart.js likes: Labels (names) and Data (numbers)
+    labels = [row[0] for row in stats_query]
+    values = [row[1] for row in stats_query]
+
+    return render_template('profile.html', labels=labels, values=values)
 
 @app.route('/ner')
 def ner():

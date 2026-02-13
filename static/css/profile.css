@@ -276,6 +276,26 @@ header {
     color: #ffffff;
 }
 
+/* Chart Container Styling */
+.stats-card {
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border: none;
+    margin-bottom: 30px;
+}
+
+.chart-wrapper {
+    max-width: 400px; /* Adjusted size for better fit */
+    margin: 20px auto;
+}
+
+.stats-title {
+    font-weight: 600;
+    color: #1e293b;
+    text-align: center;
+}
+
 
 
 

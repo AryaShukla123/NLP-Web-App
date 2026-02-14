@@ -130,17 +130,21 @@ def profile():
     if 'user_email' not in session:
         return redirect('/')
 
+    # Generate Avatar URL using the user's email
+    email = session['user_email']
+    avatar_url = f"https://api.dicebear.com/7.x/bottts/svg?seed={email}"
+
     # Query to count occurrences of each operation for the logged-in user
     stats_query = db.session.query(
         History.operation,
         func.count(History.id)
     ).filter_by(user_email=session['user_email']).group_by(History.operation).all()
 
-    # Convert to format Chart.js likes: Labels (names) and Data (numbers)
+    # Convert to format Chart.js likes
     labels = [row[0] for row in stats_query]
     values = [row[1] for row in stats_query]
 
-    return render_template('profile.html', labels=labels, values=values)
+    return render_template('profile.html', labels=labels, values=values, avatar_url=avatar_url)
 
 @app.route('/ner')
 def ner():
@@ -410,6 +414,27 @@ def perform_emotion():
         db.session.commit()
 
     return render_template("emotion.html", result=result)
+
+
+@app.route('/settings')
+def settings():
+    if 'user_email' not in session:
+        return redirect('/')
+    user = User.query.filter_by(email=session['user_email']).first()
+    return render_template('settings.html', user=user)
+
+
+@app.route('/update_profile', methods=['POST'])
+def update_profile():
+    user = User.query.filter_by(email=session['user_email']).first()
+    user.fname = request.form.get('fname')
+    user.lname = request.form.get('lname')
+
+    # Update session name too
+    session['user_name'] = f"{user.fname} {user.lname}"
+
+    db.session.commit()
+    return redirect('/profile')
 
 @app.route('/logout')
 def logout():

@@ -4,27 +4,35 @@ body {
     background: linear-gradient(135deg, #eef2ff, #f8fafc);
 }
 
-/*HEADER */
+/* HEADER */
 header {
+    width: 100%;
     position: sticky;
     top: 0;
-    padding: 18px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    /* Use height and vertical padding together for a perfect look */
+    height: 80px;
+    padding: 0 40px;
+
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important; /* Pushes Logo Left, Logout Right */
+    align-items: center !important;     /* Centers both vertically */
 
     background: linear-gradient(135deg, #1e1b4b, #312e81);
     color: white;
-
     box-shadow: 0 8px 25px rgba(0,0,0,0.25);
-    z-index: 100;
+    z-index: 1000;
+    box-sizing: border-box;
 }
-
 
 .logo {
     font-size: 22px;
     font-weight: 700;
     color: #ffffff;
+    margin: 0;
+    display: flex;
+    align-items: center;
+
 }
 
 
@@ -33,14 +41,20 @@ header {
     color: #c7d2fe;
 }
 
+.logout {
+    margin: 0;
+}
 
 .logout a {
     color: white;
     font-size: 15px;
-    padding: 8px 18px;
+    padding: 10px 20px;
     border-radius: 8px;
     background: linear-gradient(135deg, #ff416c, #ff4b2b);
     box-shadow: 0 8px 20px rgba(255, 75, 43, 0.4);
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.2s;
 }
 
 .logout a:hover {
@@ -294,6 +308,27 @@ header {
     font-weight: 600;
     color: #1e293b;
     text-align: center;
+}
+
+
+.profile-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: none;
+}
+
+.chart-wrapper {
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+/* Fix for mobile: stack them back up when screen is small */
+@media (max-width: 991px) {
+    .col-lg-5, .col-lg-7 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
 }
 
 

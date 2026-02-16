@@ -5,6 +5,10 @@ import os
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import func
+import csv
+import io
+from flask import Response, make_response
+from datetime import datetime
 
 load_dotenv()
 
@@ -33,6 +37,32 @@ class History(db.Model):
     operation = db.Column(db.String(50), nullable=False)
     input_text = db.Column(db.Text, nullable=False)
     result = db.Column(db.Text, nullable=False)
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+
+
+@app.route('/export_history')
+def export_history():
+    if 'user_email' not in session:
+        return redirect('/')
+
+    user_history = History.query.filter_by(user_email=session['user_email']).all()
+
+    si = io.StringIO()
+    cw = csv.writer(si)
+
+    cw.writerow(['Operation', 'Input Text', 'Result'])
+
+    for entry in user_history:
+        cw.writerow([
+            entry.operation,
+            entry.input_text,
+            entry.result
+        ])
+
+    output = make_response(si.getvalue())
+    output.headers["Content-Disposition"] = "attachment; filename=nlp_history.csv"
+    output.headers["Content-type"] = "text/csv"
+    return output
 
 with app.app_context():
     db.create_all()

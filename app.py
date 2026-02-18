@@ -23,6 +23,10 @@ app.config['SQLALCHEMY_DATABASE_URI'] = db_url
 
 db = SQLAlchemy(app)
 
+with app.app_context():
+    db.session.execute(db.text("ALTER TABLE history ADD COLUMN IF NOT EXISTS timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP;"))
+    db.session.commit()
+
 # defines User table
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -50,10 +54,14 @@ def export_history():
     si = io.StringIO()
     cw = csv.writer(si)
 
-    cw.writerow(['Operation', 'Input Text', 'Result'])
+    cw.writerow(['Date', 'Operation', 'Input Text', 'Result'])
 
     for entry in user_history:
+
+        clean_date = entry.timestamp.strftime('%Y-%m-%d %H:%M:%S') if entry.timestamp else "N/A"
+
         cw.writerow([
+            clean_date,
             entry.operation,
             entry.input_text,
             entry.result

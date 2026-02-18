@@ -37,7 +37,7 @@ class History(db.Model):
     operation = db.Column(db.String(50), nullable=False)
     input_text = db.Column(db.Text, nullable=False)
     result = db.Column(db.Text, nullable=False)
-    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+    timestamp = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
 
 
 @app.route('/export_history')

@@ -8,7 +8,7 @@ from sqlalchemy import func
 import csv
 import io
 from flask import Response, make_response
-from datetime import datetime
+from datetime import datetime, timezone
 
 load_dotenv()
 
@@ -22,10 +22,6 @@ if db_url and db_url.startswith("postgres://"):
 app.config['SQLALCHEMY_DATABASE_URI'] = db_url
 
 db = SQLAlchemy(app)
-
-with app.app_context():
-    db.session.execute(db.text("ALTER TABLE history ADD COLUMN IF NOT EXISTS timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP;"))
-    db.session.commit()
 
 # defines User table
 class User(db.Model):

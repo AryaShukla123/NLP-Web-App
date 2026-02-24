@@ -9,6 +9,7 @@ import csv
 import io
 from flask import Response, make_response
 from datetime import datetime, timezone
+from flask import flash
 
 load_dotenv()
 
@@ -460,14 +461,25 @@ def settings():
 
 @app.route('/update_profile', methods=['POST'])
 def update_profile():
-    user = User.query.filter_by(email=session['user_email']).first()
-    user.fname = request.form.get('fname')
-    user.lname = request.form.get('lname')
+    if 'user_email' not in session:
+        return redirect('/')
 
-    # Update session name too
+    user = User.query.filter_by(email=session['user_email']).first()
+
+    new_fname = request.form.get('fname').strip()
+    new_lname = request.form.get('lname').strip()
+
+    if not new_fname or not new_lname:
+        flash("Name fields cannot be empty!", "error")
+        return redirect('/settings')
+
+    user.fname = new_fname
+    user.lname = new_lname
+    db.session.commit()
+
     session['user_name'] = f"{user.fname} {user.lname}"
 
-    db.session.commit()
+    flash("Profile updated successfully!", "success")
     return redirect('/profile')
 
 @app.route('/logout')

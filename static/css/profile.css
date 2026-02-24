@@ -345,6 +345,24 @@ header {
     box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
 }
 
+.alert {
+    border-radius: 12px;
+    margin-bottom: 25px;
+    font-weight: 500;
+    border: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.alert-success {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.alert-danger {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
 
 
 
